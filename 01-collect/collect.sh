@@ -32,21 +32,21 @@ function collect()
     fastq=
 
     f=../../../refseq-diamond/$sample/04-panel/out/pathogen-$hbvIndex-sample-$sampleIndex.fastq
-    if [ -f $f ]
+    if [ -s $f ]
     then
         echo "    DIAMOND HBV FASTQ for sample $sample found in $f" >> $log
         fastq="$fastq $f"
     else
-        echo "    DIAMOND HBV FASTQ for sample $sample file $f does not exist" >> $log
+        echo "    DIAMOND HBV FASTQ for sample $sample file $f does not exist (or is empty)" >> $log
     fi
 
     f=../../../hbv-bwa/$sample/04-collect/$sample-hbv.fastq
-    if [ -f $f ]
+    if [ -s $f ]
     then
         echo "    BWA HBV FASTQ for sample $sample found in $f" >> $log
         fastq="$fastq $f"
     else
-        echo "    BWA HBV FASTQ for sample $sample file $f does not exist" >> $log
+        echo "    BWA HBV FASTQ for sample $sample file $f does not exist (or is empty)" >> $log
     fi
 
     if [ -n "$fastq" ]
