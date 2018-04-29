@@ -12,6 +12,7 @@ tar:
 	rm -fr neo-hbv-results
 	mkdir neo-hbv-results
 	cp NEO*/01-collect/*-hbv.{fastq,read-count} neo-hbv-results
+	cd neo-hbv-results; for i in *.read-count; do echo $$i $$(cat $$i); done | sort -n -k2 -r | sed 's/-hbv\.read-count//' > SUMMARY
 	tar cfj neo-hbv-results.tar.bz2 neo-hbv-results
 	rm -fr neo-hbv-results
 
