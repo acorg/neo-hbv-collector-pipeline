@@ -1,0 +1,19 @@
+# This is the Makefile that should be installed at the top level of the
+# processing. I.e., in the directory where all the sample directories
+# are. It has targets that pull information out from across all samples
+# once they are all individually finished.
+
+.PHONY: all, tar, clean
+
+all:
+	@echo "There is no default make target. Try make tar."
+
+tar:
+	rm -fr neo-hbv-results
+	mkdir neo-hbv-results
+	cp NEO*/01-collect/*-hbv.{fastq,read-count} neo-hbv-results
+	tar cfj neo-hbv-results.tar.bz2 neo-hbv-results
+	rm -fr neo-hbv-results
+
+clean:
+	rm -f NEO*/01-collect/*-hbv.{fastq,read-count} neo-hbv-results
